@@ -11,7 +11,6 @@ import 'filepond/dist/filepond.min.css';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
-import { FileUploadProps } from '../types';
 import { API_BASE, STATIC_RESOURCE_FILE_PATH, CONTEXT } from '../APIUrls';
 import FilePondPluginFileRename from 'filepond-plugin-file-rename';
 import { FilePondErrorDescription, FilePondFile } from 'filepond';

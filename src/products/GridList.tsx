@@ -14,6 +14,7 @@ import {
 } from 'react-admin';
 import { Link } from 'react-router-dom';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
+import { API_BASE, STATIC_RESOURCE_FILE_PATH, CONTEXT } from '../APIUrls';
 
 const useStyles = makeStyles(theme => ({
     gridList: {
@@ -55,7 +56,7 @@ const LoadingGridList: FC<GridProps & { nbItems?: number }> = ({
     return (
         <MuiGridList
             cellHeight={180}
-            cols={getColsForWidth(width)}
+            cols={4}
             className={classes.gridList}
         >
             {' '}
@@ -77,7 +78,7 @@ const LoadedGridList: FC<GridProps> = ({ width }) => {
     return (
         <MuiGridList
             cellHeight={180}
-            cols={getColsForWidth(width)}
+            cols={4}
             className={classes.gridList}
         >
             {ids.map((id: Identifier) => (
@@ -87,14 +88,14 @@ const LoadedGridList: FC<GridProps> = ({ width }) => {
                     key={id}
                     to={linkToRecord(basePath, data[id].id)}
                 >
-                    <img src={data[id].list_pic_url} alt="" />
+                    <img src={`${API_BASE}${STATIC_RESOURCE_FILE_PATH}thumbnail/${data[id].primary_pic_url}`} alt="" />
                     <GridListTileBar
                         className={classes.tileBar}
                         title={data[id].name}
                         subtitle={
                             <span>
                                 {data[id].goods_number}
-                                <NumberField
+                                {/* <NumberField
                                     className={classes.price}
                                     source="price"
                                     record={data[id]}
@@ -103,7 +104,7 @@ const LoadedGridList: FC<GridProps> = ({ width }) => {
                                         style: 'currency',
                                         currency: 'USD',
                                     }}
-                                />
+                                /> */}
                             </span>
                         }
                     />
@@ -113,7 +114,7 @@ const LoadedGridList: FC<GridProps> = ({ width }) => {
     );
 };
 
-interface GridProps extends DatagridProps, WithWidth {}
+interface GridProps extends DatagridProps {}
 
 const GridList: FC<WithWidth> = ({ width }) => {
     const { loaded } = useListContext();

@@ -7,9 +7,9 @@ type Action =
     | ReturnType<typeof changeTheme>
     | { type: 'OTHER_ACTION'; payload?: any };
 
-const themeReducer: Reducer<State, Action> = (
+const themeReducer: Reducer<State> = (
     previousState = 'light',
-    action
+    action:any
 ) => {
     if (action.type === CHANGE_THEME) {
         return action.payload;
