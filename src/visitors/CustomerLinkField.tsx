@@ -15,7 +15,7 @@ const CustomerLinkField: FC<FieldProps<Customer>> = props =>
 CustomerLinkField.defaultProps = {
     source: 'customer_id',
     addLabel: true,
-    label:"resources.customers.fields.name",
+    label:"resources.customers.fields.nickname",
 };
 
 export default CustomerLinkField;

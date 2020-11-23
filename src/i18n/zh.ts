@@ -139,12 +139,18 @@ const customChineseMessages: TranslationMessages = {
             productName:'书名',
             primary_pic_url:'主图',
             list_pic_url:'缩微图',
+            category:'分类',
             ISBN:'书号',
             author:'作者',
             publisher:'出版社',
             stock_location:'库存位置',
             retail_price:'售价',
             stock:'库存数量',
+            hot:'热门',
+            publishdate:'出版时间',
+            new:'新书',
+            available:'可用',
+            ageRange:'年龄段',
             fields: {
                 category_id: '类别',
                 height_gte: '最小高度',
@@ -249,6 +255,16 @@ const customChineseMessages: TranslationMessages = {
                 regular: '老客户',
                 returns: '退货用户',
                 reviewer: '评论用户',
+            },
+        },
+        agesegments: {
+            
+            data: {
+                under3: '3岁以下',
+                between3and7: '3-7岁',
+                between7and10: '7-10岁',
+                above10: '10岁以上',
+               
             },
         },
     },

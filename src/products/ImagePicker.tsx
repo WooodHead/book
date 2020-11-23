@@ -40,7 +40,7 @@ const ImagePicker = (props:any) => {
         if (record[source]) {
             files = [
                 {
-                    source: `${API_BASE}${STATIC_RESOURCE_FILE_PATH}/${record[source]}`,
+                    source: `${API_BASE}${record[source]}`,
                     options: {
                         type: 'local',
                     },
@@ -71,12 +71,13 @@ const ImagePicker = (props:any) => {
                     //restore: '?id=1605604900167.jpg',
                     load: (source, load, error, progress, abort, headers) => {
                         console.log('source', source)
+                       
                         var myRequest = new Request(source);
                         fetch(myRequest).then(function (response) {
                             response.blob().then(function (myBlob) {
                                 load(myBlob);
                             });
-                        });
+                        }).catch(e=>{})
                     },
                 }}
                 name="files"
@@ -96,7 +97,7 @@ const ImagePicker = (props:any) => {
                         return;
                     }
                     //onprocessend(filename);
-                    input.onChange(filename);
+                    input.onChange(`${STATIC_RESOURCE_FILE_PATH}/${filename}`);
                 }}
             />
         </div>

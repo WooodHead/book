@@ -2,7 +2,7 @@ export const API_BASE = "http://localhost:8360";
 
 export const LOGIN = "admin/auth/login";
 export const CONTEXT = '/admin'
-export const STATIC_RESOURCE_FILE_PATH = `/static/upload/product/`
+export const STATIC_RESOURCE_FILE_PATH = `/static/upload/images`
 
 // 上传到七牛的商品评论图片名前缀，结尾带斜杠
 export const GoodsCommentImgPrefix = 'comments/goods/'

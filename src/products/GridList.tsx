@@ -14,7 +14,7 @@ import {
 } from 'react-admin';
 import { Link } from 'react-router-dom';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
-import { API_BASE, STATIC_RESOURCE_FILE_PATH, CONTEXT } from '../APIUrls';
+import { API_BASE} from '../APIUrls';
 
 const useStyles = makeStyles(theme => ({
     gridList: {
@@ -88,13 +88,13 @@ const LoadedGridList: FC<GridProps> = ({ width }) => {
                     key={id}
                     to={linkToRecord(basePath, data[id].id)}
                 >
-                    <img src={`${API_BASE}${STATIC_RESOURCE_FILE_PATH}thumbnail/${data[id].primary_pic_url}`} alt="" />
+                    <img src={`${API_BASE}${data[id].list_pic_url}`} alt="" />
                     <GridListTileBar
                         className={classes.tileBar}
                         title={data[id].name}
                         subtitle={
                             <span>
-                                {data[id].goods_number}
+                                {data[id].stock}
                                 {/* <NumberField
                                     className={classes.price}
                                     source="price"

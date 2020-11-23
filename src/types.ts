@@ -1,8 +1,7 @@
-import { FilePondErrorDescription, FilePondFile } from 'filepond';
 import { ReduxState, Record, Identifier } from 'react-admin';
 
 export type ThemeName = 'light' | 'dark';
-
+export type ChildrenAgeRange = '<3' | '3-6' | '7-10' | '10>'
 export interface AppState extends ReduxState {
     theme: ThemeName;
 }
@@ -44,7 +43,7 @@ export interface Region extends Record {
     id:number;
     name:string;
 }
-export type OrderStatus = 'ordered' | 'delivered' | 'cancelled' | 'received' | 'returning' | 'returned'
+export type OrderStatus = 'temporary' | 'ordered' | 'delivered' | 'cancelled' | 'received' | 'returning' | 'returned'
 
 export interface Order extends Record {
     id:number;
