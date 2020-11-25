@@ -305,6 +305,7 @@ const OrderEdit: FC<EditProps> = props => {
     const classes = useEditStyles();
     return (
         <Edit
+            undoable={false}
             title={<OrderTitle />}
             classes={classes}
             {...props}

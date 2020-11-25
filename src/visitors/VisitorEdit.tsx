@@ -29,6 +29,7 @@ const VisitorEdit: FC<EditProps> = props => {
             title={<VisitorTitle />}
             aside={<Aside />}
             component="div"
+           
             {...props}
         >
             <VisitorForm />
@@ -71,7 +72,7 @@ const VisitorForm = (props: any) => {
                                              <NumberInput
                                                 autoFocus
                                                 source="mobile"
-                                                validate={requiredValidate}
+                                                
                                             />
                                         </Box>
                                     </Box>
@@ -79,7 +80,7 @@ const VisitorForm = (props: any) => {
                                         type="email"
                                         source="email"
                                         resource="customers"
-                                        validate={[email(), required()]}
+                                        validate={[email()]}
                                         fullWidth
                                     />
                                     <Box display={{ xs: 'block', sm: 'flex' }}>
@@ -102,12 +103,12 @@ const VisitorForm = (props: any) => {
 
                                     <Box mt="1em" />
 
-                                    <Typography variant="h6" gutterBottom>
+                                    {/* <Typography variant="h6" gutterBottom>
                                         {translate(
                                             'resources.customers.fieldGroups.address'
                                         )}
-                                    </Typography>
-                                    <TextInput
+                                    </Typography> */}
+                                    {/* <TextInput
                                         source="address"
                                         resource="customers"
                                         multiline
@@ -124,7 +125,7 @@ const VisitorForm = (props: any) => {
                                                 helperText={false}
                                             />
                                         </Box>
-                                    </Box>
+                                    </Box> */}
 
                                     <Box mt="1em" />
 
@@ -169,19 +170,14 @@ const VisitorForm = (props: any) => {
                                     <div>
                                         <SegmentsInput fullWidth />
                                     </div>
-                                    <div>
-                                        <NullableBooleanInput
-                                            source="has_newsletter"
-                                            resource="customers"
-                                        />
-                                    </div>
+                                   
                                 </Box>
                             </Box>
                         </CardContent>
                         <Toolbar
                             record={formProps.record}
                             basePath={formProps.basePath}
-                            undoable={true}
+                            undoable={false}
                             invalid={formProps.invalid}
                             handleSubmit={formProps.handleSubmit}
                             saving={formProps.saving}

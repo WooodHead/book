@@ -74,7 +74,7 @@ const LoadedGridList: FC<GridProps> = ({ width }) => {
     const classes = useStyles();
 
     if (!ids || !data) return null;
-
+    console.log('grid', ids, data)
     return (
         <MuiGridList
             cellHeight={180}

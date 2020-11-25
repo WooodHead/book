@@ -32,6 +32,7 @@ import order from '../orders';
 import review from '../reviews';
 import StarRatingField from '../reviews/StarRatingField';
 import { Order as OrderRecord, Review as ReviewRecord } from '../types';
+import NullableDateField from '../components/NullableDateField';
 
 const useAsideStyles = makeStyles(theme => ({
     root: {
@@ -117,9 +118,10 @@ const EventList: FC<EventListProps> = ({ record, basePath }) => {
                                                 'resources.customers.fields.first_seen'
                                             )}
                                         </Typography>
-                                        <DateField
+                                        <NullableDateField
                                             record={record}
-                                            source="first_seen"
+                                            format="YYYY-MM-DD hh:mm"
+                                            source="register_time"
                                         />
                                     </Box>
                                 </Box>
@@ -156,12 +158,13 @@ const EventList: FC<EventListProps> = ({ record, basePath }) => {
                                     <Box flexGrow={1}>
                                         <Typography>
                                             {translate(
-                                                'resources.customers.fields.last_seen'
+                                                'resources.customers.fields.last_login_time'
                                             )}
                                         </Typography>
-                                        <DateField
+                                        <NullableDateField
                                             record={record}
-                                            source="last_seen"
+                                            source="last_login_time"
+                                            format="YYYY-MM-DD hh:mm"
                                         />
                                     </Box>
                                 </Box>

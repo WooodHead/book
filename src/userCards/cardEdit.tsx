@@ -28,7 +28,7 @@ const CardCreateToolbar: FC<Props> = ({ onCancel, ...props }) => {
 };
 
 const CardCreate: FC<Props> = ({ onCancel, ...props }) => (
-    <Edit {...props} title=" ">
+    <Edit {...props} title=" " undoable={false}>
         <SimpleForm toolbar={<CardCreateToolbar onCancel={onCancel} />}>
             <NumberInput source="orderNumber" validate={required()} />
             <TextInput source="name" validate={required()} />

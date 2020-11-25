@@ -7,6 +7,7 @@ import {
     DateInput,
     Filter,
     FilterProps,
+    FunctionField,
     List,
     ListProps,
     NullableBooleanInput,
@@ -22,11 +23,12 @@ import CustomerLinkField from './CustomerLinkField';
 import ColoredNumberField from './ColoredNumberField';
 import MobileGrid from './MobileGrid';
 import VisitorListAside from './VisitorListAside';
+import NullableDateField from '../components/NullableDateField';
 
 const VisitorFilter = (props: Omit<FilterProps, 'children'>) => (
     <Filter {...props}>
         <SearchInput source="q" alwaysOn />
-        <DateInput source="last_seen_gte" />
+        <DateInput source="last_login_time_gte" />
         <NullableBooleanInput source="has_ordered" />
         <NullableBooleanInput source="has_newsletter" defaultValue />
         <SegmentInput />
@@ -47,16 +49,17 @@ const VisitorList: FC<ListProps> = (props: any) => {
         <List
             {...props}
             filters={isSmall ? <VisitorFilter /> : null}
-            sort={{ field: 'last_seen', order: 'DESC' }}
+            sort={{ field: 'last_login_time', order: 'DESC' }}
             perPage={25}
             aside={<VisitorListAside />}
-        >
+        > 
             {isXsmall ? (
                 <MobileGrid />
             ) : (
                 <Datagrid optimized rowClick="edit">
                     <CustomerLinkField />
-                    <DateField source="last_seen" />
+                   
+                    <NullableDateField source="last_login_time" format="YYYY-MM-DD hh:mm"/>
                     <NumberField
                         source="nb_commands"
                         label="resources.customers.fields.commands"
@@ -66,7 +69,6 @@ const VisitorList: FC<ListProps> = (props: any) => {
                         source="total_spent"
                     />
                     <DateField source="latest_purchase" showTime />
-                    <BooleanField source="has_newsletter" label="已订阅" />
                     <SegmentsField />
                 </Datagrid>
             )}

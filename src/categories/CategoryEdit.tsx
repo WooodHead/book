@@ -28,7 +28,7 @@ const CategoryTitle: FC<FieldProps<Category>> = ({ record }) => {
 };
 
 const CategoryEdit: FC<EditProps> = props => (
-    <Edit title={<CategoryTitle />} {...props}>
+    <Edit title={<CategoryTitle />} {...props} undoable={false}>
         <SimpleForm>
             <TextInput source="name" />
             <ReferenceManyField

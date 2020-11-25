@@ -112,7 +112,7 @@ const Aside: FC = () => (
                 />
             </FilterList>
 
-            <FilterList
+            {/* <FilterList
                 label="resources.customers.filters.has_newsletter"
                 icon={<MailIcon />}
             >
@@ -124,7 +124,7 @@ const Aside: FC = () => (
                     label="ra.boolean.false"
                     value={{ has_newsletter: false }}
                 />
-            </FilterList>
+            </FilterList> */}
 
             <FilterList
                 label="resources.customers.filters.group"
