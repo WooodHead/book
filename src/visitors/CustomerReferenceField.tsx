@@ -16,7 +16,7 @@ const CustomerReferenceField: FC<
 
 CustomerReferenceField.defaultProps = {
     source: 'user_id',
-    label:"resources.customers.fields.name",
+    label:"resources.customers.fields.nickname",
     addLabel: true,
 };
 

@@ -32,23 +32,22 @@ import CustomerReferenceField from '../visitors/CustomerReferenceField';
 import AddressField from '../visitors/AddressField';
 import MobileGrid from './MobileGrid';
 import { Customer } from '../types';
+import NullableDateField from '../components/NullableDateField';
 
 const OrderFilter: FC<Omit<FilterProps, 'children'>> = props => (
     <Filter {...props}>
         <SearchInput source="q" alwaysOn />
-        <ReferenceInput source="customer_id" reference="customers">
+        <ReferenceInput source="user_id" reference="customers" label="resources.customers.fields.nickname" alwaysOn>
             <AutocompleteInput
                 optionText={(choice: Customer) =>
                     choice.id // the empty choice is { id: '' }
-                        ? `${choice.first_name} ${choice.last_name}`
+                        ? `${choice.nickname}`
                         : ''
                 }
             />
         </ReferenceInput>
-        <DateInput source="date_gte" />
-        <DateInput source="date_lte" />
-        <TextInput source="total_gte" />
-        <NullableBooleanInput source="returned" />
+        <DateInput source="date_gte" alwaysOn/>
+        <DateInput source="date_lte" alwaysOn/>
     </Filter>
 );
 
@@ -177,14 +176,8 @@ const TabbedDatagrid: FC<TabbedDatagridProps> = props => {
                         >
                             <Datagrid {...props} optimized rowClick="edit">
                                 <TextField source="order_sn" />
-                                <DateField
-                                    source="add_time"
-                                    showTime
-                                    
-                                />
-
+                                <NullableDateField source="add_time" format="YYYY-MM-DD hh:mm" />
                                 <CustomerReferenceField />
-
                                 <AddressField />
                                 <NbItemsField />
                                
@@ -197,8 +190,7 @@ const TabbedDatagrid: FC<TabbedDatagridProps> = props => {
                         >
                             <Datagrid {...props} rowClick="edit">
                                 <TextField source="order_sn" />
-                                <DateField source="add_time" showTime />
-                                
+                                <NullableDateField source="add_time" format="YYYY-MM-DD hh:mm" />
                                 <CustomerReferenceField />
                                 <AddressField />
                                 <NbItemsField />
@@ -211,9 +203,8 @@ const TabbedDatagrid: FC<TabbedDatagridProps> = props => {
                         >
                             <Datagrid {...props} rowClick="edit">
                                 <TextField source="order_sn"  />
-                                <DateField source="add_time" showTime />
+                                <NullableDateField source="add_time" format="YYYY-MM-DD hh:mm" />
                                 <CustomerReferenceField />
-                               
                                 <AddressField />
                                 <NbItemsField />
                             </Datagrid>

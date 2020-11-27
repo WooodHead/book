@@ -12,6 +12,7 @@ import {
     FilterProps,
     DateInput,
 } from 'react-admin';
+import { useLocale } from 'react-admin'
 
 import FullNameField from '../visitors/FullNameField';
 //import InvoiceShow from './InvoiceShow';

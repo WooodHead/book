@@ -70,6 +70,7 @@ const customChineseMessages: TranslationMessages = {
                 has_ordered: '已购买',
                 has_newsletter: '已订阅',
                 group: '分类',
+                keyword: '关键字'
             },
             fieldGroups: {
                 identity: '会员信息',
@@ -93,7 +94,7 @@ const customChineseMessages: TranslationMessages = {
             amount: '1 order |||| %{smart_count} orders',
             title: '订单 %{reference}',
             fields: {
-                nb_items:'下单数量',
+                nb_items:'绘本数量',
                 order_sn:'订单编号',
                 add_time:'下单日期',
                 address: '地址',
@@ -108,9 +109,12 @@ const customChineseMessages: TranslationMessages = {
                 return_time:'实际还书日期',
                 expired_time:'过期日期',
                 late_fee:'滞纳金',
+                order_status: '订单状态',
                 basket:{
                     name:'书名',
-                    quantity:'数量'
+                    quantity:'数量',
+                    ISBN:'ISBN',
+                    author:'作者'
                 }
             },
             section: {

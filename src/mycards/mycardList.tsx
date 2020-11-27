@@ -1,55 +1,78 @@
-import * as React from 'react';
-import { FC } from 'react';
+import * as React from "react";
+import { FC } from "react";
 
 import {
-    List,
-    ListProps,
-    Datagrid,
-    TextField,
-    DateField,
-    ReferenceField,
-    NumberField,
-    NumberInput,
-    Filter,
-    FilterProps,
-    DateInput,
-    BooleanField,
-} from 'react-admin';
+  List,
+  ListProps,
+  Datagrid,
+  TextField,
+  DateField,
+  ReferenceField,
+  NumberField,
+  TextInput,
+  Filter,
+  FilterProps,
+  DateInput,
+  BooleanField,
+} from "react-admin";
+import NullableDateField from "../components/NullableDateField";
+import FullNameField from "../visitors/FullNameField";
 
-import FullNameField from '../visitors/FullNameField';
-
-const ListFilters = (props: Omit<FilterProps, 'children'>) => (
+const ListFilters = (props: Omit<FilterProps, "children">) => {
+ 
+  return (
     <Filter {...props}>
-        <NumberInput source="mobile" alwaysOn label="resources.customers.fields.mobile"/>
-        <DateInput source="date_gte" alwaysOn label="resources.commands.fields.date_gte"/>
-        <DateInput source="date_lte" alwaysOn label="resources.commands.fields.date_lte"/>
+      <TextInput
+        source="q"
+        alwaysOn
+        label="resources.customers.filters.keyword"
+      />
+      <DateInput
+        source="date_gte"
+        alwaysOn
+        label="resources.commands.fields.date_gte"
+      />
+      <DateInput
+        source="date_lte"
+        alwaysOn
+        label="resources.commands.fields.date_lte"
+      />
     </Filter>
-);
+  );
+};
 
-const MyCardList: FC<ListProps> = props => {
-    return (
-        <List
-            {...props}
-            filters={<ListFilters />}
-            perPage={25}
-            sort={{ field: 'date', order: 'desc' }}
+const MyCardList: FC<ListProps> = (props) => {
+  return (
+    <List
+      {...props}
+      filters={<ListFilters />}
+      perPage={25}
+      sort={{ field: "date", order: "desc" }}
+    >
+      <Datagrid>
+        <NullableDateField source="date" format="YYYY-YY-DD hh:mm" />
+        <ReferenceField
+          source="user_id"
+          reference="customers"
+          label="resources.customers.fields.nickname"
         >
-            <Datagrid>
-                <DateField source="date" />
-                <ReferenceField source="user_id" reference="customers" label="resources.customers.fields.name">
-                    <FullNameField />
-                </ReferenceField>
-                <ReferenceField source="card_id" reference="usercards" label="resources.invoices.fields.cardname">
-                    <TextField source="name"/>
-                </ReferenceField>
-                <DateField source="activateDate" locales="zh-cn" />
-                <DateField source="expiredDate" locales="zh-cn" />
-                <NumberField source="useTimes" />
-                <NumberField source="leftTimes" />
-                <BooleanField source="isValid" />
-            </Datagrid>
-        </List>
-    );
+          <FullNameField />
+        </ReferenceField>
+        <ReferenceField
+          source="card_id"
+          reference="usercards"
+          label="resources.invoices.fields.cardname"
+        >
+          <TextField source="name" />
+        </ReferenceField>
+        <NullableDateField source="activateDate" format="YYYY-YY-DD hh:mm" />
+        <NullableDateField source="expiredDate" format="YYYY-YY-DD hh:mm" />
+        <NumberField source="useTimes" />
+        <NumberField source="leftTimes" />
+        <BooleanField source="isValid" />
+      </Datagrid>
+    </List>
+  );
 };
 
 export default MyCardList;

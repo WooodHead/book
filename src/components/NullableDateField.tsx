@@ -16,7 +16,7 @@ const NullableDateField: FC<FieldProps & OwnProps> = ({
  
   return record ? (
     <span>
-      {record[source] ? moment.unix(record[source]).format(format) : null}
+      {record[source] ? moment.unix(record[source]).format(format) : '-'}
     </span>
   ) : null;
 };
