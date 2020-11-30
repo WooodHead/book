@@ -88,13 +88,13 @@ const Dashboard: FC = () => {
         }, 0);
 
         const aggregations = recentOrders
-            .filter(order => order.status !== 'cancelled')
+            .filter(order => order.status !== 400)
             .reduce(
                 (stats: OrderStats, order) => {
-                    if (order.status !== 'cancelled') {
+                    if (order.status !== 400) {
                         stats.nbNewOrders++;
                     }
-                    if (order.status === 'ordered') {
+                    if (order.status === 201) {
                         stats.pendingOrders.push(order);
                     }
                     return stats;
@@ -119,6 +119,7 @@ const Dashboard: FC = () => {
             nbNewOrders: aggregations.nbNewOrders,
             pendingOrders: aggregations.pendingOrders,
         }));
+
         const { data: customers } = await dataProvider.getMany<Customer>(
             'customers',
             {

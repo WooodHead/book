@@ -24,7 +24,7 @@ const dateFormatter = (date: number): string =>
 
 const aggregateOrdersByDay = (orders: Order[]): { [key: string]: number } =>
     orders
-        .filter((order: Order) => order.status !== 'cancelled')
+        .filter((order: Order) => order.status !== 400)
         .reduce((acc, curr) => {
             const day = format(curr.date, 'YYYY-MM-DD');
             if (!acc[day]) {
@@ -84,14 +84,14 @@ const OrderChart: FC<{ orders?: Order[] }> = ({ orders }) => {
                                 ]}
                                 tickFormatter={dateFormatter}
                             />
-                            <YAxis dataKey="total" name="Revenue" unit="€" />
+                            <YAxis dataKey="total" name="Revenue" unit="¥" />
                             <CartesianGrid strokeDasharray="3 3" />
                             <Tooltip
                                 cursor={{ strokeDasharray: '3 3' }}
                                 formatter={value =>
                                     new Intl.NumberFormat(undefined, {
                                         style: 'currency',
-                                        currency: 'USD',
+                                        currency: 'CNY',
                                     }).format(value as any)
                                 }
                                 labelFormatter={(label: any) =>

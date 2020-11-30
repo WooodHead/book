@@ -43,8 +43,8 @@ export interface Region extends Record {
     id:number;
     name:string;
 }
-export type OrderStatus = 'temporary' | 'ordered' | 'delivered' | 'cancelled' | 'received' | 'returning' | 'returned'
-
+//export type OrderStatus = 'temporary' | 'ordered' | 'delivered' | 'cancelled' | 'received' | 'returning' | 'returned'
+export type OrderStatus = 0 | 201 | 300 | 301 | 501 | 502 | 400;
 export interface Order extends Record {
     id:number;
     order_sn:string;
@@ -91,6 +91,7 @@ export interface MyCard extends Record {
     expiredDate?:Date;
     useTimes:number;
     leftTimes:number;
+    isValid:boolean;
 }
 export type ReviewStatus = 'accepted' | 'pending' | 'rejected';
 

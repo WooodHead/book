@@ -13,6 +13,7 @@ import {
     DateInput,
 } from 'react-admin';
 import { useLocale } from 'react-admin'
+import NullableDateField from '../components/NullableDateField';
 
 import FullNameField from '../visitors/FullNameField';
 //import InvoiceShow from './InvoiceShow';
@@ -32,20 +33,11 @@ const InvoiceList: FC<ListProps> = props => (
         sort={{ field: 'date', order: 'desc' }}
     >
         <Datagrid>
-           
-            <DateField source="date" />
+            <NullableDateField source="date" format="YYYY-MM-DD hh:mm" />
             <ReferenceField source="user_id" reference="customers">
-                <FullNameField />
+                <FullNameField /> 
             </ReferenceField>
-            <ReferenceField
-                source="card_id"
-                reference="usercards"
-                link={false}
-                label="resources.invoices.fields.cardname"
-            >
-                <TextField source="name"/>
-            </ReferenceField>
-           
+            <TextField source="title"/>
             <NumberField source="total" />
         </Datagrid>
     </List>

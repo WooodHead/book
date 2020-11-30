@@ -1,7 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
 import { FieldProps } from "react-admin";
-import get from "lodash/get";
 import moment from "moment";
 
 interface OwnProps {

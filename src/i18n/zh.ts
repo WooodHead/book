@@ -12,6 +12,10 @@ const customChineseMessages: TranslationMessages = {
             light: '亮色',
             dark: '暗色',
         },
+        notification:{
+            handle_success: '操作成功',
+            handle_error: '操作失败',
+        },
         dashboard: {
             monthly_revenue: '每月营收',
             month_history: '30 营收历史',
@@ -90,7 +94,9 @@ const customChineseMessages: TranslationMessages = {
         },
         commands: {
             name: '借阅',
-           
+            delivered: '更新为已发货',
+            received: '更新为已收货',
+            returning: '更新为已还书',
             amount: '1 order |||| %{smart_count} orders',
             title: '订单 %{reference}',
             fields: {
@@ -110,6 +116,7 @@ const customChineseMessages: TranslationMessages = {
                 expired_time:'过期日期',
                 late_fee:'滞纳金',
                 order_status: '订单状态',
+                relateCard: '关联卡',
                 basket:{
                     name:'书名',
                     quantity:'数量',
@@ -129,12 +136,12 @@ const customChineseMessages: TranslationMessages = {
             name: '账单',
             fields: {
                 date: '账单日期',
-                customer_id: '会员',
+                user_id: '会员',
                 card_id: '会员卡',
                 date_gte: '开始日前',
                 date_lte: '结束日前',
                 total_gte: '最小费用',
-                cardname: '卡名称',
+                title: '费用说明',
                 total:'金额'
             },
         },

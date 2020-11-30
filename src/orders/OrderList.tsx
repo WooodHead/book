@@ -58,7 +58,7 @@ const useDatagridStyles = makeStyles({
 const tabs = [
     { id: 'ordered', name: '新订单' },
     { id: 'delivered', name: '已发货' },
-    { id: 'cancelled', name: '已取消' },
+    { id: 'returning', name: '还书' },
 ];
 
 interface TabbedDatagridProps extends DatagridProps {}
@@ -76,17 +76,17 @@ const useGetTotals = (filterValues: any) => {
         { field: 'id', order: 'ASC' },
         { ...filterValues, status: 'delivered' }
     );
-    const { total: totalCancelled } = useGetList(
+    const { total: totalReturning } = useGetList(
         'commands',
         { perPage: 1, page: 1 },
         { field: 'id', order: 'ASC' },
-        { ...filterValues, status: 'cancelled' }
+        { ...filterValues, status: 'returning' }
     );
 
     return {
         ordered: totalOrdered,
         delivered: totalDelivered,
-        cancelled: totalCancelled,
+        returning: totalReturning,
     };
 };
 
@@ -101,7 +101,7 @@ const TabbedDatagrid: FC<TabbedDatagridProps> = props => {
     const [delivered, setDelivered] = useState<Identifier[]>(
         [] as Identifier[]
     );
-    const [cancelled, setCancelled] = useState<Identifier[]>(
+    const [returning, setReturning] = useState<Identifier[]>(
         [] as Identifier[]
     );
     const totals = useGetTotals(filterValues) as any;
@@ -115,8 +115,8 @@ const TabbedDatagrid: FC<TabbedDatagridProps> = props => {
                 case 'delivered':
                     setDelivered(ids);
                     break;
-                case 'cancelled':
-                    setCancelled(ids);
+                case 'returning':
+                    setReturning(ids);
                     break;
             }
         }
@@ -138,7 +138,7 @@ const TabbedDatagrid: FC<TabbedDatagridProps> = props => {
             ? ordered
             : filterValues.status === 'delivered'
             ? delivered
-            : cancelled;
+            : returning;
 
     return (
         <Fragment>
@@ -197,9 +197,9 @@ const TabbedDatagrid: FC<TabbedDatagridProps> = props => {
                             </Datagrid>
                         </ListContextProvider>
                     )}
-                    {filterValues.status === 'cancelled' && (
+                    {filterValues.status === 'returning' && (
                         <ListContextProvider
-                            value={{ ...listContext, ids: cancelled }}
+                            value={{ ...listContext, ids: returning }}
                         >
                             <Datagrid {...props} rowClick="edit">
                                 <TextField source="order_sn"  />

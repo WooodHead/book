@@ -6,20 +6,18 @@ import {
   ListProps,
   Datagrid,
   TextField,
-  DateField,
   ReferenceField,
   NumberField,
   TextInput,
   Filter,
   FilterProps,
   DateInput,
-  BooleanField,
 } from "react-admin";
+import NullableBooleanField from "../components/NullableBooleanField";
 import NullableDateField from "../components/NullableDateField";
 import FullNameField from "../visitors/FullNameField";
 
 const ListFilters = (props: Omit<FilterProps, "children">) => {
- 
   return (
     <Filter {...props}>
       <TextInput
@@ -50,7 +48,7 @@ const MyCardList: FC<ListProps> = (props) => {
       sort={{ field: "date", order: "desc" }}
     >
       <Datagrid>
-        <NullableDateField source="date" format="YYYY-YY-DD hh:mm" />
+        <NullableDateField source="date" format="YYYY-MM-DD hh:mm" />
         <ReferenceField
           source="user_id"
           reference="customers"
@@ -62,14 +60,14 @@ const MyCardList: FC<ListProps> = (props) => {
           source="card_id"
           reference="usercards"
           label="resources.invoices.fields.cardname"
-        >
+        > 
           <TextField source="name" />
         </ReferenceField>
-        <NullableDateField source="activateDate" format="YYYY-YY-DD hh:mm" />
-        <NullableDateField source="expiredDate" format="YYYY-YY-DD hh:mm" />
+        <NullableDateField source="activateDate" format="YYYY-MM-DD hh:mm" />
+        <NullableDateField source="expiredDate" format="YYYY-MM-DD hh:mm" />
         <NumberField source="useTimes" />
         <NumberField source="leftTimes" />
-        <BooleanField source="isValid" />
+        <NullableBooleanField source="isValid" align="right" />
       </Datagrid>
     </List>
   );

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
     NumberField,
     TextField,
-    DateField,
     useTranslate,
     useGetList,
     Record,
@@ -82,14 +81,14 @@ const EventList: FC<EventListProps> = ({ record, basePath }) => {
     const { data: orders, ids: orderIds } = useGetList<OrderRecord>(
         'commands',
         { page: 1, perPage: 100 },
-        { field: 'date', order: 'DESC' },
-        { customer_id: record && record.id }
+        { field: 'add_time', order: 'DESC' },
+        { user_id: record && record.id }
     );
     const { data: reviews, ids: reviewIds } = useGetList<ReviewRecord>(
         'reviews',
         { page: 1, perPage: 100 },
-        { field: 'date', order: 'DESC' },
-        { customer_id: record && record.id }
+        { field: 'add_time', order: 'DESC' },
+        { user_id: record && record.id }
     );
     const events = mixOrdersAndReviews(orders, orderIds, reviews, reviewIds);
 
@@ -217,7 +216,7 @@ const EventList: FC<EventListProps> = ({ record, basePath }) => {
                                 );
                             }}
                         >
-                            {new Date(event.date).toLocaleString(locale, {
+                            {new Date(event.data.add_time * 1000).toLocaleString(locale, {
                                 weekday: 'long',
                                 year: 'numeric',
                                 month: 'short',

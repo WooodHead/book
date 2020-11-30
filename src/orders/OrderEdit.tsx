@@ -9,9 +9,8 @@ import {
   TextField,
   Toolbar,
   useTranslate,
-  useUpdate,
-  Button,
 } from "react-admin";
+
 import { Link as RouterLink } from "react-router-dom";
 import {
   Card,
@@ -26,45 +25,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Order, Customer } from "../types";
 import Basket from "./Basket";
 import NullableDateField from "../components/NullableDateField";
-
-//设置为已发货
-const DeliveredButton: FC<Order> = ({ record }) => {
-  const [statusUpdate, { loading }] = useUpdate(
-    "commands",
-    record.id,
-    { order_status: 300 },
-    record
-  );
-  return record.order_status === 201 ? (
-    <Button label="delivered" onClick={statusUpdate} disabled={loading} />
-  ) : null;
-};
-
-//设置为已收货
-const ReceivedButton: FC<Order> = ({ record }) => {
-  const [statusUpdate, { loading }] = useUpdate(
-    "commands",
-    record.id,
-    { order_status: 301 },
-    record
-  );
-  return record.order_status === 300 ? (
-    <Button label="delivered" onClick={statusUpdate} disabled={loading} />
-  ) : null;
-};
-
-//设置为已还书
-const ReturnButton: FC<Order> = ({ record }) => {
-  const [statusUpdate, { loading }] = useUpdate(
-    "commands",
-    record.id,
-    { order_status: 502 },
-    record
-  );
-  return record.order_status === 501 ? (
-    <Button label="delivered" onClick={statusUpdate} disabled={loading} />
-  ) : null;
-};
+import {
+  DeliveredButton,
+  ReceivedButton,
+  ReturnButton,
+} from "./OrderStatusButtons";
 
 interface OrderTitleProps {
   record?: Order;
@@ -120,10 +85,10 @@ const OrderForm = (props: any) => {
   const translate = useTranslate();
   return (
     <FormWithRedirect
-      toolbar={<OrderToolbar  {...props}/>}
       {...props}
       render={(formProps: any) => (
         <Box maxWidth="50em">
+          <OrderToolbar {...props} />
           <Card>
             <CardContent>
               <Grid container spacing={1}>
@@ -162,59 +127,49 @@ const OrderForm = (props: any) => {
                       </Labeled>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6}>
-                      <Box mt={2}>
-                        <Labeled source="shipping_time" resource="commands">
-                          <NullableDateField
-                            source="shipping_time"
-                            resource="commands"
-                            record={formProps.record}
-                          />
-                        </Labeled>
-                      </Box>
+                      <Labeled source="shipping_time" resource="commands">
+                        <NullableDateField
+                          source="shipping_time"
+                          resource="commands"
+                          record={formProps.record}
+                        />
+                      </Labeled>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6}>
-                      <Box mt={2}>
-                        <Labeled source="receiving_time" resource="commands">
-                          <NullableDateField
-                            source="receiving_time"
-                            resource="commands"
-                            record={formProps.record}
-                          />
-                        </Labeled>
-                      </Box>
+                      <Labeled source="receiving_time" resource="commands">
+                        <NullableDateField
+                          source="receiving_time"
+                          resource="commands"
+                          record={formProps.record}
+                        />
+                      </Labeled>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6}>
-                      <Box mt={2}>
-                        <Labeled source="return_time" resource="commands">
-                          <NullableDateField
-                            source="return_time"
-                            resource="commands"
-                            record={formProps.record}
-                          />
-                        </Labeled>
-                      </Box>
+                      <Labeled source="return_time" resource="commands">
+                        <NullableDateField
+                          source="return_time"
+                          resource="commands"
+                          record={formProps.record}
+                        />
+                      </Labeled>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6}>
-                      <Box mt={2}>
-                        <Labeled source="expired_time" resource="commands">
-                          <NullableDateField
-                            source="expired_time"
-                            resource="commands"
-                            record={formProps.record}
-                          />
-                        </Labeled>
-                      </Box>
+                      <Labeled source="expired_time" resource="commands">
+                        <NullableDateField
+                          source="expired_time"
+                          resource="commands"
+                          record={formProps.record}
+                        />
+                      </Labeled>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6}>
-                      <Box mt={2}>
-                        <Labeled source="late_fee" resource="commands">
-                          <TextField
-                            source="late_fee"
-                            resource="commands"
-                            record={formProps.record}
-                          />
-                        </Labeled>
-                      </Box>
+                      <Labeled source="late_fee" resource="commands">
+                        <TextField
+                          source="late_fee"
+                          resource="commands"
+                          record={formProps.record}
+                        />
+                      </Labeled>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -265,6 +220,18 @@ const OrderForm = (props: any) => {
                     resource="commands"
                     record={formProps.record}
                   />
+                  <Spacer />
+                  <Typography variant="h6" gutterBottom>
+                    {translate("resources.commands.fields.relateCard")}
+                  </Typography>
+                  <ReferenceField
+                    source="mycard_id"
+                    reference="mycards"
+                    basePath="/mycards"
+                    record={formProps.record}
+                  >
+                    <TextField source="name" />
+                  </ReferenceField>
                 </Grid>
               </Grid>
               <Spacer />
@@ -277,7 +244,7 @@ const OrderForm = (props: any) => {
               </Box>
               <Spacer />
             </CardContent>
-            <Toolbar
+            {/* <Toolbar
               record={formProps.record}
               basePath={formProps.basePath}
               undoable={true}
@@ -285,7 +252,7 @@ const OrderForm = (props: any) => {
               handleSubmit={formProps.handleSubmit}
               saving={formProps.saving}
               resource="commands"
-            />
+            /> */}
           </Card>
         </Box>
       )}
