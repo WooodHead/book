@@ -13,10 +13,10 @@ RUN npm install
 COPY . /usr/src/book
 
 # Specify port app runs on
-EXPOSE 3000
+EXPOSE 4000
 
 # Run the app
-CMD [ "npm", "start" ]
+CMD [ "npm", "start" , "--port 4000"]
 
 #To build the docker image,docker build [username]/[tag] [dockerfile location]
 #docker build -t scott/book:latest .
