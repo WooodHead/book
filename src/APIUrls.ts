@@ -1,5 +1,5 @@
-export const API_BASE = "http://localhost:8360";
-
+// export const API_BASE = "http://localhost:8360";
+export const API_BASE = "http://www.ioliz.com/book";
 export const LOGIN = "admin/auth/login";
 export const CONTEXT = '/admin'
 export const STATIC_RESOURCE_FILE_PATH = `/static/upload/images`

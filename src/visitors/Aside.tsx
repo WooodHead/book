@@ -302,14 +302,14 @@ const Order: FC<OrderProps> = ({ record, basePath }) => {
             <Typography variant="body2" color="textSecondary">
                 {translate('resources.commands.nb_items', {
                     smart_count: record.basket.length,
-                    _: '1 item |||| %{smart_count} items',
+                    _: '1 本 |||| %{smart_count} 本',
                 })}
                 &nbsp;-&nbsp;
                 <NumberField
                     source="total"
                     options={{
                         style: 'currency',
-                        currency: 'USD',
+                        currency: 'CNY',
                     }}
                     record={record}
                     basePath={basePath}
