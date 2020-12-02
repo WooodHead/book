@@ -20,7 +20,7 @@ RUN npm build
 EXPOSE 4000
 
 # Run the app
-CMD [ "pm2", "start" , "/node_modules/react-scripts/scripts/start.js --name book"]
+CMD [ "pm2-runtime", "/node_modules/react-scripts/scripts/start.js --name book"]
 
 #To build the docker image,docker build [username]/[tag] [dockerfile location]
 #docker build -t scott/book:latest .
