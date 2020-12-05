@@ -61,7 +61,8 @@ const customChineseMessages: TranslationMessages = {
                 mobile:'手机号',
                 birthday:'生日',
                 address:'地址',
-                zipcode:'邮编'
+                zipcode:'邮编',
+                has_ordered: '已购买',
             },
             filters: {
                 last_visited: '上次访问',

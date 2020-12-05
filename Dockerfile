@@ -17,7 +17,7 @@ COPY . /usr/src/book
 # build
 RUN npm build
 # Specify port app runs on
-EXPOSE 4000
+EXPOSE 3000
 
 # Run the app
 CMD [ "pm2-runtime", "/node_modules/react-scripts/scripts/start.js --name book"]

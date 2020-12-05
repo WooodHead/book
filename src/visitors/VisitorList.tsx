@@ -30,7 +30,7 @@ const VisitorFilter = (props: Omit<FilterProps, 'children'>) => (
         <SearchInput source="q" alwaysOn />
         <DateInput source="last_login_time_gte" />
         <NullableBooleanInput source="has_ordered" />
-        <NullableBooleanInput source="has_newsletter" defaultValue />
+        {/* <NullableBooleanInput source="has_newsletter" defaultValue /> */}
         <SegmentInput />
     </Filter>
 );
@@ -68,7 +68,7 @@ const VisitorList: FC<ListProps> = (props: any) => {
                     <ColoredNumberField
                         source="total_spent"
                     />
-                    <DateField source="latest_purchase" showTime />
+                   
                     <SegmentsField />
                 </Datagrid>
             )}

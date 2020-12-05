@@ -17,6 +17,7 @@ import AvatarField from './AvatarField';
 import ColoredNumberField from './ColoredNumberField';
 import SegmentsField from './SegmentsField';
 import { Customer } from '../types';
+import NullableDateField from '../components/NullableDateField';
 
 const useStyles = makeStyles(theme => ({
     root: { margin: '1em' },
@@ -60,7 +61,7 @@ const MobileGrid: FC<Props> = ({ ids, data, basePath }) => {
                     <CardHeader
                         title={
                             <div className={classes.cardTitleContent}>
-                                <h2>{`${data[id].first_name} ${data[id].last_name}`}</h2>
+                                <h2>{`${data[id].nickname}`}</h2>
                                 <EditButton
                                     resource="visitors"
                                     basePath={basePath}
@@ -73,10 +74,10 @@ const MobileGrid: FC<Props> = ({ ids, data, basePath }) => {
                     <CardContent className={classes.cardContent}>
                         <div>
                             {translate(
-                                'resources.customers.fields.last_seen_gte'
+                                'resources.customers.fields.last_login_time'
                             )}
                             &nbsp;
-                            <DateField record={data[id]} source="last_seen" />
+                            <NullableDateField record={data[id]} source="last_login_time" format="YYYY-MM-DD hh:mm" />
                         </div>
                         <div>
                             {translate(
